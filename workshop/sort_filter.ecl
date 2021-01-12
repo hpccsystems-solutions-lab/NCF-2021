@@ -1,5 +1,6 @@
 IMPORT $.getFlights;
 
+
 //1- Sort by effective date and flight number, save result in sortedData
 sortedData := SORT(getFlights.gsecData, EffectiveDate, FlightNumber);
 
