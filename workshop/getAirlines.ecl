@@ -2,10 +2,9 @@ EXPORT getAirlines := MODULE
 
 EXPORT  airlinesRec := RECORD   
     INTEGER Airline_ID;
-    STRING	Name;
+    STRING	Airline_Name;
     STRING 	IATA;
     STRING	ICAO;
-    STRING	Airline_Name;
     STRING	Country;
     STRING  Active;
 
