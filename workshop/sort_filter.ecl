@@ -9,7 +9,7 @@ sortedData := SORT(getFlights.gsecData, EffectiveDate, FlightNumber);
 filteredData := sortedData(Carrier = 'DL' AND 
                         EffectiveDate BETWEEN '20191101' AND '20191130');
 
-OUTPUT(filteredData, NAMED('filteredData'));
+OUTPUT(CHOOSEN(filteredData, 100), NAMED('filteredData'));
 
 //3- Display Flights that thier DepartStationCode are in LHR or ORD 
 //and ArriveStationCode is in JFK, ATL, or ORD.
@@ -17,4 +17,4 @@ OUTPUT(filteredData, NAMED('filteredData'));
 getStations := getFlights.gsecData(DepartStationCode IN ['LHR', 'ORD'] AND
                                 ArriveStationCode IN ['JFK', 'ATL', 'ORD']);
 sortRes := SORT(getStations, Carrier, FlightNumber);
-OUTPUT(sortRes, NAMED('sortedStations'));
+OUTPUT(CHOOSEN(sortRes, 100), NAMED('sortedStations'));

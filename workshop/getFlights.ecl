@@ -63,7 +63,7 @@ END;
 // Dataset definition
 EXPORT gsecData := DATASET
     (
-        '~flight::schedule_2019',   // Logical file pathname
+        '~2019::international::flights::schedules',   // Logical file pathname
         GSECRec,                    // Record definition
         FLAT                        // File type (FLAT = native Thor file format)
     );

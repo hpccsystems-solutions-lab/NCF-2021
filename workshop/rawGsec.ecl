@@ -101,7 +101,15 @@ rawGsecREC := RECORD
 	END;
 
 
-RawGsecDS := DATASET('~raw::flight::schedule::2019', 
+
+
+
+
+//2019::flights::schedules::all::fields::csv
+//raw::flight::schedule::2019
+
+
+RawGsecDS := DATASET('~2019::flights::schedules::all::fields::csv', 
                     rawGSECRec,  
                     CSV(HEADING(1))); 
 
@@ -169,3 +177,4 @@ res := PROJECT(RawGsecDS, TRANSFORM(GSECRec,
                             SELF := LEFT));
 
 OUTPUT(res,, '~flight::schedule_2019', THOR);
+//2019::international::flights::schedules

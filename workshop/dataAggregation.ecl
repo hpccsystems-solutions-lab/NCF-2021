@@ -20,7 +20,7 @@ aveDistanceByCarrier := TABLE
         Carrier, FlightNumber, DepartCityCode
     );
 
-OUTPUT(aveDistanceByCarrier, NAMED('aveDistanceByCarrier'));
+OUTPUT(CHOOSEN(aveDistanceByCarrier, 100), NAMED('aveDistanceByCarrier'));
 
 /******************************************************************************
  * TODO

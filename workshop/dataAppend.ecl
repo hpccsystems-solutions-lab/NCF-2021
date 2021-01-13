@@ -5,6 +5,8 @@ IMPORT $.getServiceTypes;
 //Let's review the Airline ds
 OUTPUT(CHOOSEN(getAirlines.AirlinesDS, 100), NAMED('Airlines_DS'));
 
+//***********************************************************
+//Part One
 
 //Record layout for result
 AppendRec := RECORD
@@ -25,16 +27,25 @@ AppendAirlines := JOIN(getFlights.gsecData,      //Left dataset
                   //TODO: Add AirlineCountry
                   SELF := LEFT));
 
-OUTPUT(SORT(AppendAirlines, FlightNumber ,DepartStationCode), NAMED('AppendAirlines'));
+//TODO: Sort the result by FlightNumber ,DepartStationCode
+//TODO: Save the result under: AppendAirlines
+SortedAirlines := SORT(AppendAirlines, FlightNumber ,DepartStationCode);
+OUTPUT(CHOOSEN(SortedAirlines, 100), NAMED('SortedAirlines'));
 
-//Let's review this
+
+//TODO: Count your total gsecData and your sortedAirlines
+//TODO: What do you think? Let's review
 COUNT(AppendAirlines);
 COUNT(getFlights.gsecData);
+
+//***********************************************************
+//Part Two
 
 //Adding Airline names 
 AppendServiceRec := RECORD
   AppendRec;
-  //TODO: Add service description from serviceTypes
+  //TODO: Add service description from serviceTypes dataset
+  //TODO: Name it ServiceDesc
   STRING      ServiceDesc;
 END;
 
@@ -43,11 +54,14 @@ AddService := JOIN(AppendAirlines,
                   getServiceTypes.serviceTypesDS,
                   LEFT.ServiceType = RIGHT.code,
                   TRANSFORM(AppendServiceRec,
+                  //TODO: Add ServiceDesc
                   SELF.ServiceDesc := RIGHT.Desc,
-                  SELF := LEFT
-                  //TODO: Service type and it's decsrption
-                  //TODO: Remove SELF := []
-                 //SELF := []
+                  //SELF := LEFT
+                  //TODO: Does everything look ok?
+                  SELF := [];
                   ));
 
-OUTPUT(SORT(AddService, FlightNumber ,DepartStationCode), NAMED('AddService'));
+//TODO: Sort by FlightNumber ,DepartStationCode
+//TODO: Save result under FinalResult
+FinalResult := SORT(AddService, FlightNumber ,DepartStationCode);
+OUTPUT(CHOOSEN(FinalResult, 100), NAMED('FinalResult'));
