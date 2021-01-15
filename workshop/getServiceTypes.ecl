@@ -29,10 +29,10 @@ EXPORT getServiceTypes := MODULE
                 {'N', 'Others', 'Not specific', 'Business Aviation/Air Taxi'}
             ],
             {
-                STRING1     code,
-                STRING      application,
-                STRING      operation_type,
-                STRING      desc
+                STRING1     Code,
+                STRING      Application,
+                STRING      Operation_type,
+                STRING      Desc
             }
         );
 
