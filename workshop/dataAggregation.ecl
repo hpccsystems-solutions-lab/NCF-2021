@@ -22,7 +22,52 @@ aveDistanceByCarrier := TABLE
 
 OUTPUT(CHOOSEN(aveDistanceByCarrier, 100), NAMED('aveDistanceByCarrier'));
 
-/******************************************************************************
+//******************************************************************************
+// How many carriers leaves a station?
+
+//Group per stations and Carriers
+Unique_Carriers_Station := TABLE
+    (
+        getFlights.gsecData,
+        {
+            DepartStationCode,
+            Carrier
+        },
+        DepartStationCode, Carrier
+    );
+OUTPUT(CHOOSEN(SORT(Unique_Carriers_Station,DepartStationCode) , 100), NAMED('Unique_Carriers_Station'));
+
+Num_Carriers_Station := TABLE
+   (
+        Unique_Carriers_Station,
+        {
+            DepartStationCode,
+            INTEGER TotalCarriers := COUNT(GROUP)
+        },
+        DepartStationCode
+    );
+
+OUTPUT(CHOOSEN(SORT(Num_Carriers_Station, DepartStationCode), 100), NAMED('Num_Carriers_Station'));
+
+//*****************************************************************************
+
+TotalOperationDays := TABLE
+    (
+        getFlights.gsecData,
+        {
+            Carrier,
+            FlightNumber,
+            UNSIGNED4   num_trips := SUM(GROUP, IsOpMon + IsOpTue + IsOpWed + 
+                                                IsOpThu + IsOpFri + IsOpSat + 
+                                                IsOpSun)
+        },
+        Carrier, FlightNumber
+    );
+
+OUTPUT(CHOOSEN(TotalOperationDays, 100), NAMED('TotalOperationDays'));
+
+/*
+//*****************************************************************************
  * TODO
  *
  * Create new aggregations by applying TABLE against the GSEC data.

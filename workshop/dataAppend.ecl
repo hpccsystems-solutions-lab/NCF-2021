@@ -17,6 +17,7 @@ AppendRec := RECORD
   STRING    ArriveStationCode;
   STRING1   ServiceType;
   //TODO: Add AirlineCountry from AirlinesDS
+  STRING   AirlineCountry;
 END;
 
 AppendAirlines := JOIN(getFlights.gsecData,      //Left dataset
@@ -25,6 +26,7 @@ AppendAirlines := JOIN(getFlights.gsecData,      //Left dataset
                   TRANSFORM(AppendRec,
                   SELF.Airline := RIGHT.Airline_Name,
                   //TODO: Add AirlineCountry
+                  SELF.AirlineCountry := RIGHT.Country;
                   SELF := LEFT));
 
 //TODO: Sort the result by FlightNumber ,DepartStationCode

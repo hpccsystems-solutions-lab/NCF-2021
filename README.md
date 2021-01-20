@@ -1,5 +1,13 @@
 # Welcome to NCF 2021 Workshop
 
+# Contact Info
+Bahar Fardanian
+Bahareh.Fardanian@lexisnexisrisk.com
+
+
+# Internship
+https://hpccsystems.com/blog/intern_program_2019
+
 
 # Resources
 
