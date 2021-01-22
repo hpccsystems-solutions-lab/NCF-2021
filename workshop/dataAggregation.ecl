@@ -66,65 +66,6 @@ TotalOperationDays := TABLE
 
 OUTPUT(CHOOSEN(TotalOperationDays, 100), NAMED('TotalOperationDays'));
 
-//*****************************************************************************
-
-arrivCountryInfo := TABLE
-    (
-        getFlights.gsecData,
-        {
-  	    ArriveCountryCode,
-		INTEGER1 numCanada := COUNT(GROUP, DepartCountryCode = 'CN'),
-        INTEGER  minFlight := MIN(GROUP, FlightDistance),
-        },
-        ArriveCountryCode
-    );
-
-OUTPUT(CHOOSEN(arrivCountryInfo, 100), NAMED('arrivalCountryInfo'));
-
-//*****************************************************************************
-
-aveDistByCabin := TABLE
-  (getFlights.gsecData,
-        {
-            CabinCategoryClasses,
-            INTEGER    dist := AVE(GROUP, FlightDistance)
-        },
-        CabinCategoryClasses
-    );
-OUTPUT(CHOOSEN(aveDistByCabin,100), NAMED('aveDistCabinType'));
-
-//*****************************************************************************
-
-aveDistance := TABLE
-    (
-        getFlights.gsecData,
-        {
-            Carrier,
-  					AveDistance := AVE(GROUP, FlightDistance);
-            
-        },
-        Carrier
-    );
-
-OUTPUT(CHOOSEN(aveDistance, 100), NAMED('aveDistance'));
-
-//*****************************************************************************
-
-averageLayoverByRoute := TABLE
-  (
-    getFlights.gsecData(layovertime > 0),
-    {
-      Carrier,
-      DepartStationCode,
-      ArriveStationCode,
-      UNSIGNED2		Avg_Layover := AVE(GROUP, layoverTime),
-    },
-    Carrier, DepartStationCode, ArriveStationCode
-  );
-
-OUTPUT(CHOOSEN(averageLayoverByRoute, 100), NAMED('averageLayoverByRoute'));
-
-
 /*
 //*****************************************************************************
  * TODO

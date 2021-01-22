@@ -58,9 +58,9 @@ AddService := JOIN(AppendAirlines,
                   TRANSFORM(AppendServiceRec,
                   //TODO: Add ServiceDesc
                   SELF.ServiceDesc := RIGHT.Desc,
-                  SELF := LEFT
+                  //SELF := LEFT
                   //TODO: Does everything look ok?
-                  //SELF := [];
+                  SELF := [];
                   ));
 
 //TODO: Sort by FlightNumber ,DepartStationCode
