@@ -8,7 +8,6 @@ Bahareh.Fardanian@lexisnexisrisk.com
 # Internship
 https://hpccsystems.com/blog/intern_program_2019
 
-
 # Resources
 
 ## HPCC Systems’ ECL Watch
